@@ -1,8 +1,10 @@
 <?php
 session_start();
 $lista=$_SESSION['lista'];
-echo sizeof($lista);
+$marcas=$_SESSION['marcas'];
+$usd=42.2;
 ?>
+
 <html>
     <head>
         <title>Shop</title>
@@ -10,14 +12,14 @@ echo sizeof($lista);
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="styles/shop_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/shop_responsive.css">
+<link rel="stylesheet" type="text/css" href="../styles/bootstrap4/bootstrap.min.css">
+<link href="../plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="../plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="../styles/shop_styles.css">
+<link rel="stylesheet" type="text/css" href="../styles/shop_responsive.css">
 
     </head>
     <body>
@@ -70,17 +72,18 @@ echo sizeof($lista);
 										<div class="custom_dropdown">
 											<div class="custom_dropdown_list">
 												<span class="custom_dropdown_placeholder clc">Todas las categorias</span>
-												<i class="fas fa-chevron-down"></i>
+                                                                                                
 												<ul class="custom_list clc">
-													<li><a class="clc" href="#">Apple</a></li>
-													<li><a class="clc" href="#">Xiaomi</a></li>
-													<li><a class="clc" href="#">Samsung</a></li>
-													<li><a class="clc" href="#">LG</a></li>
-													<li><a class="clc" href="#">Motorola</a></li>
-													<li><a class="clc" href="#">Caterpillar</a></li>
-													<li><a class="clc" href="#">Huawei</a></li>
-												</ul>
-											</div>
+                                                                                                    <?php
+                                                                                                foreach($marcas as $reg){ 
+                                                                                                    ?>
+												<li><a class="clc" href="#"><?php echo $reg[1]?></a></li>
+												<?php
+                                                                                                }
+                                                                                                ?>
+                                                                                                </ul>
+                                                                                                
+                                                                                        </div>
 										</div>
 										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="../images/search.png" alt=""></button>
 									</form>
@@ -135,32 +138,15 @@ echo sizeof($lista);
 									<div class="cat_burger"><span></span><span></span><span></span></div>
 									<div class="cat_menu_text">Categorias</div>
 								</div>
-
+                                                                <!-- Recorrer tabla de categorias brands -->
 								<ul class="cat_menu">
-									<li><a href="#">Apple <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><a href="#">Xiaomi<i class="fas fa-chevron-right"></i></a></li>
-									<li class="hassubs">
-										<a href="#">Samsung<i class="fas fa-chevron-right"></i></a>
-										<ul>
-											<li class="hassubs">
-												<a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-										</ul>
-									</li>
-									<li><a href="#">LG<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Motorola<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Caterpillar<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Huawei<i class="fas fa-chevron-right"></i></a></li>
-									
+                                                                    <?php
+                                                                                                foreach($marcas as $reg){ 
+                                                                                                    ?>
+									<li><a href="#"><?php echo $reg[1]?> </a></li>
+									<?php
+                                                                        }
+                                                                        ?>
 								</ul>
 							</div>
 
@@ -202,7 +188,18 @@ echo sizeof($lista);
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
-
+                                            <div class="filter_price">
+                                                <div id="slider-range" class="slider_range ui-slider ui-corner-all ui-slider-horizontal ui-widget u i-widget-content">
+                                                    
+                                                    <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 27%;">
+                                                    </div>
+                                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span>
+                                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 27%;"></span>
+                                            
+                                            </div>
+                                                <p>Rango: </p>
+                                             <p><input type="text" id="amount" class="amount" readonly="" style="border:0; font-weight:bold;"></p>
+                                            </div>
 					
 
 				</div>
@@ -237,7 +234,7 @@ echo sizeof($lista);
                         </div>
 				<div class="product_content">
 					<div class="product_price">
-                                            $<?php echo $reg[2]?>
+                                            $<?php echo $reg[2]*$usd?>
                                             
                                         </div>
                                 <div class="product_name">
@@ -341,7 +338,7 @@ echo sizeof($lista);
 							
 						<div class="footer_social">
 							<ul>
-								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a href="https://www.instragram.com/escrowcba"><i class="fab fa-facebook-f"></i></a></li>
 								<li><a href="#"><i class="fab fa-instagram"></i></a></li>
 							</ul>
 						</div>
@@ -402,20 +399,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 </div>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
-<script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="js/shop_custom.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../styles/bootstrap4/popper.js"></script>
+<script src="../styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../plugins/greensock/TweenMax.min.js"></script>
+<script src="../plugins/greensock/TimelineMax.min.js"></script>
+<script src="../plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="../plugins/greensock/animation.gsap.min.js"></script>
+<script src="../plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="../plugins/easing/easing.js"></script>
+<script src="../plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="../plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../js/shop_custom.js"></script>
 </body>
 
 </html>
