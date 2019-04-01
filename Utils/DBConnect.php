@@ -12,12 +12,15 @@
  * @author perez
  */
 class DBConnect {
-    public function getConexion(){
+
+    public function getConexion() {
         $cnx = new PDO("mysql:host=localhost;dbname=escrow", "root", "110196Ep");
         return $cnx;
     }
-    public function mysqliConexion(){
+
+    public function mysqliConexion() {
         $cnx = mysqli_connect("localhost", "root", "110196Ep", "escrow");
         return $cnx;
     }
+
 }
